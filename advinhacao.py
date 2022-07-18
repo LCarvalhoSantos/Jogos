@@ -4,26 +4,29 @@ print("Bem-vindo ao jogo de advinhação! :)")
 
 num_secret = random.randint(1, 100)
 chute = 0
-saida = 1
 cont = 0
 
-while chute != num_secret and saida == 1:
+#repetindo caso o usuário erre o número secreto
+while (chute != num_secret):
     cont = cont + 1
     chute = int(input("Digite um número de 1 - 100: "))
-    if chute > num_secret:
-        print("******************************************\n")
-        print("Número digitado: ", chute)
-        print("Tente um numero menor.")
-        print("Número de tentativas: ", cont, "\n")
-        print("******************************************")
-    elif chute < num_secret:
-        print("******************************************\n")
-        print("Tente um numero maior!")
-        print("Número de tentativas: ", cont, "\n") 
-        print("******************************************")
+    if(chute <= 100 or chute <= 0):
+#realizando o teste do chute na estrutura de decisão
+        if (chute > num_secret):
+            print("******************************************\n")
+            print("Número digitado: {}". format(chute))
+            print("Tente um numero menor.")
+            print("Total de tentativas: {} ".format(cont), "\n")
+            print("******************************************")
+        elif chute < num_secret:
+            print("******************************************\n")
+            print("Tente um numero maior!")
+            print("Total de tentativas: {} ".format(cont), "\n")
+            print("******************************************")
+        else:
+            print("******************************************\n")
+            print("Você acertou!!!")
+            print("Total de tentativas: {} ".format(cont), "\n")
+            print("******************************************")
     else:
-        print("******************************************\n")
-        print("Você acertou!!!")
-        print("Número de tentativas: ", cont, "\n")
-        print("******************************************")
-        saida = 0
+        print("Digite um número válido")
