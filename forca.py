@@ -9,26 +9,36 @@ def jogar():
     word = ["_","_","_","_","_","_"]
     palavra = "banana".upper()
     erro = int(0)
-    underline = ("_")
-    validacao = False
-
+    tent = int(5)
+    line = ("_")
+    verifica = False
+    
     print("Palavra secreta meu nobre: {}".format(word))
 
-    while erro < 6 or validacao == False:
+#verificação da saida do laço
+    while verifica == False :
         chute = input("Digite uma letra: ").upper().strip()
         if chute in palavra:
-            tamanho = int(len(word))
             pos = 0
+            #verificando letra por letra e substituindo os underlines
             for letra in palavra:
                 if chute == letra:
                     word[pos] = chute
                 pos = pos + 1
-                validacao = find("_" in word)
-                print(validacao)
             print(word)
+            #saída do laço em caso de acerto
+            if line not in word:
+                verifica = True
+                print("Parabéns você acertou!")
         else:
-            erro = erro + 1
-
+            erro += 1
+            tent -= 1
+            print("Você errou {} vezes. Restam {} tentativas. ".format(erro, tent))
+            if erro == 5:
+                #saída do laço em caso de acerto
+                verifica = True
+                print("Infelizmente você perdeu, na próxima você consegue!!! :) ")
+        
 #iniciando jogo ao chamar arquivo forca
 if __name__ == "__main__":
     jogar()
