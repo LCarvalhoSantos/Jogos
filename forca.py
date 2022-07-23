@@ -6,8 +6,10 @@ def jogar():
     print("Bem-vindo ao jogo de Forca! :)")
     print("-----------------------------")
 
-    word = ["_","_","_","_","_","_"]
     palavra = "banana".upper()
+    #list comprehentions
+    word = ["_" for letra in palavra]
+    
     erro = int(0)
     tent = int(5)
     line = ("_")
