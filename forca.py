@@ -1,19 +1,13 @@
-from gettext import find
+import random
 
 def jogar():
 
-    print("-----------------------------")
-    print("Bem-vindo ao jogo de Forca! :)")
-    print("-----------------------------")
+    abertura()
 
-    palavra = "banana".upper()
-    #list comprehentions
-    word = ["_" for letra in palavra]
-    
-    erro = int(0)
-    tent = int(5)
-    line = ("_")
-    verifica = False
+    palavra_secreta()
+
+
+
     
     print("Palavra secreta meu nobre: {}".format(word))
 
@@ -44,3 +38,27 @@ def jogar():
 #iniciando jogo ao chamar arquivo forca
 if __name__ == "__main__":
     jogar()
+
+
+
+def abertura():
+    print("-----------------------------")
+    print("Bem-vindo ao jogo de Forca! :)")
+    print("-----------------------------")
+
+def palavra_secreta():    
+    palavras = []
+    frut_aleat = 0
+    frut_aleat = random.randint(1,12)
+    frutas = open("frutas.txt","r")
+    
+    for linha in frutas:
+        linha = linha.strip()
+        palavras.append(linha)
+
+    frutas.close()
+
+    #list comprehentions
+    palavra = palavras[frut_aleat].upper()
+    word = ["_" for letra in palavra]
+
