@@ -1,23 +1,29 @@
 import random
 
 def jogar():
-
+    #abertura do jogo
     abertura()
+    #seleciona uma palavra secreta do arquivo txt
+    palavra_sec = palavra_secreta()
 
-    palavra_secreta()
-
-
-
+    letras_acertadas = letras_certas(palavra_sec)
     
+    word = letras_certas(palavra_sec)
+
     print("Palavra secreta meu nobre: {}".format(word))
+
+    verifica = False
+    line = "_"
+    erro = 0
+    tent = 5
 
 #verificação da saida do laço
     while verifica == False :
         chute = input("Digite uma letra: ").upper().strip()
-        if chute in palavra:
+        if chute in palavra_sec:
             pos = 0
             #verificando letra por letra e substituindo os underlines
-            for letra in palavra:
+            for letra in palavra_sec:
                 if chute == letra:
                     word[pos] = chute
                 pos = pos + 1
@@ -35,12 +41,6 @@ def jogar():
                 verifica = True
                 print("Infelizmente você perdeu, na próxima você consegue!!! :) ")
         
-#iniciando jogo ao chamar arquivo forca
-if __name__ == "__main__":
-    jogar()
-
-
-
 def abertura():
     print("-----------------------------")
     print("Bem-vindo ao jogo de Forca! :)")
@@ -48,7 +48,6 @@ def abertura():
 
 def palavra_secreta():    
     palavras = []
-    frut_aleat = 0
     frut_aleat = random.randint(1,12)
     frutas = open("frutas.txt","r")
     
@@ -60,5 +59,11 @@ def palavra_secreta():
 
     #list comprehentions
     palavra = palavras[frut_aleat].upper()
-    word = ["_" for letra in palavra]
+    return palavra
+    
+def letras_certas(palavra_sec):
+    return ["_" for letra in palavra_sec]
 
+#iniciando jogo ao chamar arquivo forca
+if __name__ == "__main__":
+    jogar()
