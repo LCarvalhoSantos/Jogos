@@ -19,7 +19,9 @@ def jogar():
 
 #verificação da saida do laço
     while verifica == False :
-        chute = input("Digite uma letra: ").upper().strip()
+
+        chute = pede_chute() 
+        
         if chute in palavra_sec:
             pos = 0
             #verificando letra por letra e substituindo os underlines
@@ -30,16 +32,16 @@ def jogar():
             print(word)
             #saída do laço em caso de acerto
             if line not in word:
+                venceu(verifica)
                 verifica = True
-                print("Parabéns você acertou!")
         else:
             erro += 1
             tent -= 1
             print("Você errou {} vezes. Restam {} tentativas. ".format(erro, tent))
             if erro == 5:
                 #saída do laço em caso de acerto
+                perdeu(verifica)
                 verifica = True
-                print("Infelizmente você perdeu, na próxima você consegue!!! :) ")
         
 def abertura():
     print("-----------------------------")
@@ -63,6 +65,16 @@ def palavra_secreta():
     
 def letras_certas(palavra_sec):
     return ["_" for letra in palavra_sec]
+
+def pede_chute():
+    chute = input("Digite uma letra: ").upper().strip()
+    return chute
+
+def venceu(verifica):
+    print("Parabéns você acertou!")
+
+def perdeu(verifica):
+    print("Infelizmente você perdeu, na próxima você consegue!!! :) ")
 
 #iniciando jogo ao chamar arquivo forca
 if __name__ == "__main__":
