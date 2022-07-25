@@ -19,15 +19,12 @@ def jogar():
 
 #verificação da saida do laço
     while verifica == False :
-
         chute = pede_chute() 
-        
         if chute in palavra_sec:
             pos = 0
             #verificando letra por letra e substituindo os underlines
             for letra in palavra_sec:
-                if chute == letra:
-                    word[pos] = chute
+                chute_certo(word,letra,pos,chute)
                 pos = pos + 1
             print(word)
             #saída do laço em caso de acerto
@@ -37,8 +34,10 @@ def jogar():
         else:
             erro += 1
             tent -= 1
-            print("Você errou {} vezes. Restam {} tentativas. ".format(erro, tent))
-            if erro == 5:
+            desenha_forca(erro)
+            calc_erro_tent(erro, tent)
+
+            if erro == 7:
                 #saída do laço em caso de acerto
                 perdeu(verifica)
                 verifica = True
@@ -75,6 +74,64 @@ def venceu(verifica):
 
 def perdeu(verifica):
     print("Infelizmente você perdeu, na próxima você consegue!!! :) ")
+
+def calc_erro_tent(erro,tent):
+    print("Você errou {} vezes. Restam {} tentativas. ".format(erro, tent))
+
+def chute_certo(word,letra,pos,chute):
+    if chute == letra:
+        word[pos] = chute
+    return word
+
+def desenha_forca(erro):
+    print("  _______     ")
+    print(" |/      |    ")
+
+    if(erro == 1):
+        print(" |      (_)   ")
+        print(" |            ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erro == 2):
+        print(" |      (_)   ")
+        print(" |      \     ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erro == 3):
+        print(" |      (_)   ")
+        print(" |      \|    ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erro == 4):
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erro == 5):
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |            ")
+
+    if(erro == 6):
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      /     ")
+
+    if (erro == 7):
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      / \   ")
+
+    print(" |            ")
+    print("_|___         ")
+    print()
 
 #iniciando jogo ao chamar arquivo forca
 if __name__ == "__main__":
